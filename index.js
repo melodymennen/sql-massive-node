@@ -1,7 +1,7 @@
-const express = reqiure('express');
-const bodyParser = reqiure('body-parser');
-const massive = reqiure('massive');
-const cors = reqiure('cors');
+const express = require('express');
+const bodyParser = require('body-parser');
+const massive = require('massive');
+const cors = require('cors');
 const controller = require('./products_controller');
 require('dotenv').config()
 
@@ -19,5 +19,5 @@ app.get('/api/product/:id', controller.getOne)
 app.put('/api/product/:id', controller.update)
 app.delete('/api/product/:id', controller.delete)
 
-const port = process.env.PORT
+const port = process.env.PORT 
 app.listen(port, () => console.log(`listening on port ${port} <(^_^)^`));
