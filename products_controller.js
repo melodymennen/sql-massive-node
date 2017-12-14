@@ -1,13 +1,14 @@
 module.exports = {
     create: (req,res,next){
         const db = req.app.get(db)
+        const {name, descrription, price, image_url} = req.body
         
-        db.create_product().then(() => res.status(200).send()).catch(() => res.status(500).send())
+        db.create_product([name,description, price, image_url]).then(() => res.status(200).send()).catch(() => res.status(500).send())
     },
     getOne: (req,res,next){
         const db = req.app.get(db)
         
-        db.read_product().then(product => res.status(200).send(product)).catch(() => res.status(500).send())
+        db.read_product([req.params.id]).then(product => res.status(200).send(product)).catch(() => res.status(500).send())
     },
     getAll: (req,res,next){
         const db = req.app.get(db)
@@ -17,11 +18,11 @@ module.exports = {
     update: (req,res,next){
         const db = req.app.get(db)
         
-        db.update_product().then(() => res.status(200).send()).catch(() => res.status(500).send())
+        db.update_product([req.params.id,req.query.desc]).then(() => res.status(200).send()).catch(() => res.status(500).send())
     },
     delete: (req,res,next){
         const db = req.app.get(db)
         
-        db.delete_product().then(() => res.status(200).send()).catch(() => res.status(500).send())
+        db.delete_product([req.params.id]).then(() => res.status(200).send()).catch(() => res.status(500).send())
     },
 }
